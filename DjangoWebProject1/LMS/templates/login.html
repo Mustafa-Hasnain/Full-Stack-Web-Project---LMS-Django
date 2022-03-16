@@ -1,0 +1,54 @@
+{% load static %}
+<link href="{% static 'css/kye.css' %}" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<style type="text/css">
+	#bg{
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: 100%;
+	}
+</style>
+<link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/four/css/bootstrap.min.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/three/css/bootstrap.min.css' %}">
+
+
+<body id="bg" style="background-image: url('{% static "img/white 1.jpg"%}');">
+  <div class="container-fluid">
+  <div class="row" style="padding-top: 300px">
+    <div class="col-sm-4"></div>
+
+    <div class="col-sm-4">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-10">
+        <div class="filter"></div>
+        <div class="container bg-dark">
+           <center><h2 style="color: white">SkyLearn</h2></center>
+           <br>
+            <form action="{% url 'login' %}" method="POST">
+            {% csrf_token %}
+                <label>Username</label><br>
+                <input type="text" name="username" required="Fill Username" style="background-color: white"><br>
+                <label>Password</label><br>
+                <input type="password" name="password" required="Fill Password" style="background-color: white"><br>
+                <button>Sign in</button>
+            </form>
+                  <div class="card-footer">
+        <div class="d-flex justify-content-center">
+            <div class="messages">
+                {% for message in messages %}
+                    <a class="alert alert-success" style="color:red;"> {{ message }}</a>
+                {% endfor %}
+            </div>
+          </div>
+              </div>
+      </div>
+        </div>
+    <div class="col-sm-4"></div>
+
+      </div>
+    </div>
+  </div>
+        
+    </body>
+

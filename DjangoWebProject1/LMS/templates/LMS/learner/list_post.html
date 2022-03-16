@@ -1,0 +1,112 @@
+{% extends 'LMS/learner/base.html' %}
+
+
+{% block body %}
+
+  <div class="container-fluid">
+        <div class="row">
+          <div class="col-11 mb-3">
+          <div class="col-11 mb-3">
+           
+
+                <div id="content-wrapper" style="padding-top: 30px">
+        <div class="container-fluid">
+            <div class="card mb-3">
+            
+                <div class="card-body">
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+    <center>
+                    <a href="/llchat">
+        <button class="btn btn btn-primary">
+                        <i class="fa fa-refresh" aria-hidden="true"></i>
+                        Read Posted Announcements</button>
+                        </a><br><br><br>
+    </center>
+
+     {% for post in admin_list %}
+        <div class="chat" style="width: 150%; background: white; box-shadow: 2px 0px 25px 20px #111;">
+            <p><b class="chat-content">{{ post.content }}</b></p>
+            <small class="chat-date">Posted on {{ post.posted_at }} by {{ post.user }}</small>
+        </div><br><br><br/>
+     {% empty %}
+    <h1 class="heading">No Chats Yet Be The First To Message!</h1><br>
+    {% endfor %}
+                    {% if is_paginated %}
+  <ul class="pagination">
+    {% if page_obj.has_previous %}
+      <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in paginator.page_range %}
+      {% if page_obj.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if page_obj.has_next %}
+      <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}>
+
+    <!--
+    <br><a href=""><button class="btn btn-outline-primary">New Message</button></a>
+    -->
+    <div class="col-sm-4"></div>
+    </div>
+
+
+                      </div>
+                    </div>  
+                  </div>
+
+</div>
+
+
+
+<div class="col-sm-2" style="color: red">
+</div>
+
+</div>
+</div>
+      {% if is_paginated %}
+  <ul class="pagination">
+    {% if page_obj.has_previous %}
+      <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in paginator.page_range %}
+      {% if page_obj.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if page_obj.has_next %}
+      <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+
+{% endblock body %}
+{% block extrascripts %}
+  <script type="text/javascript">
+      $(function () {
+          // Hide message
+          $(".alert").fadeTo(2000, 500).slideUp(500, function () {
+              $(".alert").slideUp(500);
+          });
+      });
+  </script>
+{% endblock extrascripts %}
